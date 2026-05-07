@@ -3,7 +3,7 @@ provider "google" {
     region = "asia-south-1"  
 }
 
-resource "google_monitoring_notification_channel" "email-1" {
+resource "google_monitoring_notification_channel" "email" {
     display_name = var.display_name 
     type = "email"
     labels = {
