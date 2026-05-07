@@ -34,3 +34,9 @@ variable "enable_cpu_90_alert" {
   type    = bool
   default = false
 }
+
+variable "enable_ops_agent" {
+  type        = bool
+  description = "Enable Ops Agent"
+  default     = false
+}

@@ -26,3 +26,8 @@ module "snapshot_schedule" {
   enable_cpu_80_alert = var.enable_cpu_80_alert
   enable_cpu_90_alert = var.enable_cpu_90_alert
 }
+
+module "ops_agent" {
+  source = "./modules/ops_agent"
+  count = var.enable_ops_agent ? 1 : 0
+}
