@@ -18,13 +18,19 @@ module "snapshot_schedule" {
    retention_days = var.retention_days
  }
 
- module "cpu_alerts" {
-  source = "./modules/alerts"
+ module "vm-alerts" {
+  source = "./modules/vm-alerts"
 
   notification_channel_id = module.notification_channel.notification_channel_id
 
-  enable_cpu_80_alert = var.enable_cpu_80_alert
-  enable_cpu_90_alert = var.enable_cpu_90_alert
+  enable_vm_cpu_80_alert    = var.enable_vm_cpu_80_alert
+  enable_vm_cpu_90_alert    = var.enable_vm_cpu_90_alert
+
+  enable_vm_memory_80_alert = var.enable_vm_memory_80_alert
+  enable_vm_memory_90_alert = var.enable_vm_memory_90_alert
+
+  enable_vm_disk_80_alert   = var.enable_vm_disk_80_alert
+  enable_vm_disk_90_alert   = var.enable_vm_disk_90_alert
 }
 
 module "ops_agent" {
