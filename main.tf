@@ -49,3 +49,23 @@ module "vpc_flowlogs" {
 
   enable_vpc_flow_logs = var.enable_vpc_flow_logs
 }
+
+module "cloudsql_alerts" {
+
+  source = "./modules/cloudsql-alerts"
+
+  notification_channel_id = module.notification_channel.notification_channel_id
+
+  enable_cloudsql_cpu_80_alert = var.enable_cloudsql_cpu_80_alert
+  enable_cloudsql_cpu_90_alert = var.enable_cloudsql_cpu_90_alert
+
+  enable_cloudsql_memory_80_alert = var.enable_cloudsql_memory_80_alert
+  enable_cloudsql_memory_90_alert = var.enable_cloudsql_memory_90_alert
+
+  enable_cloudsql_disk_80_alert = var.enable_cloudsql_disk_80_alert
+  enable_cloudsql_disk_90_alert = var.enable_cloudsql_disk_90_alert
+
+  enable_cloudsql_replication_lag_alert = var.enable_cloudsql_replication_lag_alert
+
+  enable_cloudsql_active_connections_alert = var.enable_cloudsql_active_connections_alert
+}
