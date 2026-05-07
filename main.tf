@@ -19,7 +19,7 @@ module "snapshot_schedule" {
  }
 
  module "cpu_alerts" {
-  source = "./modules/cpu-alerts"
+  source = "./modules/alerts"
 
   notification_channel_id = module.notification_channel.notification_channel_id
 
