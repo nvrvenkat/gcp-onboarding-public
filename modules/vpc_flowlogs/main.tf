@@ -15,6 +15,7 @@ resource "google_compute_subnetwork" "subnet_existing" {
     for_each = var.enable_vpc_flow_logs ? [1] : []
 
     content {
+
       aggregation_interval = "INTERVAL_30_SEC"
       flow_sampling        = 0.5
       metadata             = "INCLUDE_ALL_METADATA"
