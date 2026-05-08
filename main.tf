@@ -93,3 +93,12 @@ module "lb_health_check" {
 
   is_global           = var.is_global
 }
+
+module "gcs_governance" {
+
+  source = "./modules/s3"
+
+  project_id          = var.project_id
+  bucket_names        = var.bucket_names
+  lifecycle_age_days  = var.lifecycle_age_days
+}
