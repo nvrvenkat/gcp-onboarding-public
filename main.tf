@@ -70,3 +70,11 @@ module "cloudsql_alerts" {
 
   enable_cloudsql_active_connections_alert = var.enable_cloudsql_active_connections_alert
 }
+
+module "custom_iam_role" {
+  source = "./modules/iam-least-priviledge-role"
+
+  project_id    = var.project_id
+  role_file_path = var.role_file_path
+  member        = var.member
+}
