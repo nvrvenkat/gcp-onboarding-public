@@ -129,10 +129,6 @@ variable "iam_user" {
   type = string
 }
 
-variable "project_id" {
-  type = string
-}
-
 variable "backend_service_name" {
   type = string
 }
