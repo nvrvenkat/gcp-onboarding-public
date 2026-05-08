@@ -1,29 +1,34 @@
 locals {
-  role_data = yamldecode(
-    file(var.role_file_path)
-  )
+  role_files = fileset(path.module, "*.yaml")
+
+  roles = {
+    for file_name in local.role_files :
+    trimsuffix(file_name, ".yaml") => yamldecode(
+      file("${path.module}/${file_name}")
+    )
+  }
 }
 
-resource "google_project_iam_custom_role" "custom_role" {
+resource "google_project_iam_custom_role" "custom_roles" {
+  for_each = local.roles
+
   project = var.project_id
 
-  role_id = replace(
-    lower(local.role_data.title),
-    " ",
-    "_"
-  )
+  role_id = each.value.role_id
 
-  title       = local.role_data.title
-  description = local.role_data.description
-  stage       = local.role_data.stage
+  title       = each.value.title
+  description = each.value.description
+  stage       = each.value.stage
 
-  permissions = local.role_data.includedPermissions
+  permissions = each.value.includedPermissions
 }
 
-resource "google_project_iam_member" "binding" {
+resource "google_project_iam_member" "bindings" {
+  for_each = google_project_iam_custom_role.custom_roles
+
   project = var.project_id
 
-  role = google_project_iam_custom_role.custom_role.name
+  role = each.value.name
 
   member = var.member
 }
