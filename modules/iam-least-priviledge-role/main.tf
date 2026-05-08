@@ -30,5 +30,5 @@ resource "google_project_iam_member" "bindings" {
 
   role = each.value.name
 
-  member = var.member
+  member = var.iam_user
 }

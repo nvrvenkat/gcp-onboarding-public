@@ -125,6 +125,6 @@ variable "project_id" {
   type = string
 }
 
-variable "member" {
+variable "iam_user" {
   type = string
 }
