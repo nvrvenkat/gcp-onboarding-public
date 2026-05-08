@@ -39,17 +39,17 @@ module "ops_agent" {
   project_id = var.project_id
 }
 
-module "vpc_flowlogs" {
+#module "vpc_flowlogs" {
 
-  source = "./modules/vpc_flowlogs"
+#  source = "./modules/vpc_flowlogs"
 
-  subnet_name          = var.subnet_name
-  region               = var.region
-  network              = var.network
-  ip_cidr_range        = var.ip_cidr_range
+ # subnet_name          = var.subnet_name
+  #region               = var.region
+  #network              = var.network
+  #ip_cidr_range        = var.ip_cidr_range
 
-  enable_vpc_flow_logs = var.enable_vpc_flow_logs
-}
+  #enable_vpc_flow_logs = var.enable_vpc_flow_logs
+#}
 
 module "cloudsql_alerts" {
 

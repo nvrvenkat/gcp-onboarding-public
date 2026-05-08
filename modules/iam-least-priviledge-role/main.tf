@@ -14,7 +14,7 @@ resource "google_project_iam_custom_role" "custom_roles" {
 
   project = var.project_id
 
-  role_id = each.value.role_id
+  role_id = replace(lower(each.value.title), " ", "_")
 
   title       = each.value.title
   description = each.value.description
