@@ -1,24 +1,31 @@
-provider "google" {
-    project = "ankercloud-testing-account"
-    region = "asia-south-1"  
+resource "null_resource" "vm_labels" {
+
+  count = length(var.instance_names)
+
+  provisioner "local-exec" {
+
+    command = <<EOT
+gcloud compute instances add-labels ${var.instance_names[count.index]} \
+--labels=managed_by=${var.labels["managed_by"]} \
+--zone=${var.zone} \
+--project=${var.project_id}
+EOT
+
+  }
 }
 
-resource "google_compute_subnetwork" "subnet_existing" {
+resource "null_resource" "deletion_protection" {
 
-  name          = var.subnet_name
-  region        = var.region
-  network       = var.network
-  ip_cidr_range = var.ip_cidr_range
+  count = var.enable_deletion_protection ? length(var.instance_names) : 0
 
-  dynamic "log_config" {
+  provisioner "local-exec" {
 
-    for_each = var.enable_vpc_flow_logs ? [1] : []
+    command = <<EOT
+gcloud compute instances update ${var.instance_names[count.index]} \
+--zone=${var.zone} \
+--project=${var.project_id} \
+--deletion-protection
+EOT
 
-    content {
-
-      aggregation_interval = "INTERVAL_30_SEC"
-      flow_sampling        = 0.5
-      metadata             = "INCLUDE_ALL_METADATA"
-    }
   }
 }

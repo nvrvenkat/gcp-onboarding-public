@@ -1,20 +1,20 @@
-variable "subnet_name" {
+variable "project_id" {
   type = string
 }
 
-variable "region" {
+variable "zone" {
   type = string
 }
 
-variable "network" {
-  type = string
+variable "instance_names" {
+  type = list(string)
 }
 
-variable "ip_cidr_range" {
-  type = string
+variable "labels" {
+  type = map(string)
 }
 
-variable "enable_vpc_flow_logs" {
+variable "enable_deletion_protection" {
   type    = bool
-  default = false
+  default = true
 }
