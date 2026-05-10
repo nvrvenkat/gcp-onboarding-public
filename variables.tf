@@ -164,3 +164,23 @@ variable "enable_deletion_protection" {
   type    = bool
   default = true
 }
+
+variable "instance_name" {
+  type = string
+}
+
+variable "machine_type" {
+  type = string
+}
+
+variable "zone" {
+  type = string
+}
+
+variable "network" {
+  type = string
+}
+
+variable "image" {
+  type = string
+}
