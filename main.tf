@@ -100,6 +100,8 @@ module "gcs_governance" {
 module "vm_labels" {
 
   source = "./modules/vm-labels"
+  depends_on = [module.vm]
+
 
   project_id = var.project_id
   zone       =  var.vm_zone

@@ -1,7 +1,5 @@
 resource "null_resource" "vm_labels" {
 
-  depends_on = [module.vm]
-
   for_each = toset(var.instance_names)
 
   provisioner "local-exec" {
@@ -20,8 +18,6 @@ EOT
 }
 
 resource "null_resource" "deletion_protection" {
-
-  depends_on = [module.vm]
 
   for_each = var.enable_deletion_protection ? toset(var.instance_names) : []
 
