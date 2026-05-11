@@ -293,4 +293,5 @@ variable "asset_feed_name" {
 
 variable "labels_to_apply" {
   type = map(string)
-}
+  description = "Labels to attach automatically to newly created resources such as VMs, Cloud SQL instances, buckets, and Cloud Run services"
+  }
