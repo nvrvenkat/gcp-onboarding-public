@@ -13,8 +13,10 @@ resource "google_compute_security_policy" "cloud_armor_policy" {
 
     match {
 
-      expr {
-        expression = var.expression
+      versioned_expr = "SRC_IPS_V1"
+
+      config {
+        src_ip_ranges = var.src_ip_ranges
       }
     }
   }

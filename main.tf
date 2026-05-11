@@ -96,7 +96,7 @@ module "cloudarmor_policy" {
 
   rule_action = var.rule_action
 
-  expression = var.expression
+  src_ip_ranges = var.src_ip_ranges
 
   default_rule_action = var.default_rule_action
 }

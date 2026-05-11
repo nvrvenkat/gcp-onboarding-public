@@ -16,8 +16,8 @@ variable "rule_action" {
   default = "deny(403)"
 }
 
-variable "expression" {
-  type = string
+variable "src_ip_ranges" {
+  type = list(string)
 }
 
 variable "default_rule_action" {
