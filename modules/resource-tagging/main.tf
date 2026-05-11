@@ -18,12 +18,36 @@ resource "google_project_service" "services" {
 }
 
 # ----------------------------------------
+# Current Project Info
+# ----------------------------------------
+
+data "google_project" "current" {
+
+  project_id = var.project_id
+}
+
+# ----------------------------------------
 # Pub/Sub Topic
 # ----------------------------------------
 
 resource "google_pubsub_topic" "asset_events" {
 
   name = var.pubsub_topic_name
+}
+
+# ----------------------------------------
+# Allow Cloud Asset API To Publish
+# ----------------------------------------
+
+resource "google_pubsub_topic_iam_member" "asset_feed_publisher" {
+
+  project = var.project_id
+
+  topic = google_pubsub_topic.asset_events.name
+
+  role = "roles/pubsub.publisher"
+
+  member = "serviceAccount:service-${data.google_project.current.number}@gcp-sa-cloudasset.iam.gserviceaccount.com"
 }
 
 # ----------------------------------------
@@ -53,7 +77,8 @@ resource "google_cloud_asset_project_feed" "asset_feed" {
   }
 
   depends_on = [
-    google_project_service.services
+    google_project_service.services,
+    google_pubsub_topic_iam_member.asset_feed_publisher
   ]
 }
 
