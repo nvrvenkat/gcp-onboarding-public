@@ -27,6 +27,7 @@ def main(event, context):
             print("Empty Pub/Sub message")
             return
 
+        print("RAW MESSAGE:")
         print(pubsub_message)
 
         message_json = json.loads(pubsub_message)
@@ -36,6 +37,8 @@ def main(event, context):
         asset_type = asset.get("assetType", "")
 
         print(f"Asset Type: {asset_type}")
+
+        print(repr(asset_type))
 
         if asset_type == "compute.googleapis.com/Instance":
 
@@ -53,7 +56,9 @@ def main(event, context):
 
             handle_cloud_run(asset, LABELS)
 
-        elif asset_type == "cloudfunctions.googleapis.com/CloudFunction":
+        elif "cloudfunction" in asset_type.lower():
+
+            print("Cloud Function detected")
 
             handle_cloud_function(asset, LABELS)
 
