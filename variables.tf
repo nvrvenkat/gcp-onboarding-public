@@ -95,10 +95,6 @@ variable "enable_cloudsql_active_connections_alert" {
   default = false
 }
 
-variable "project_id" {
-  type = string
-}
-
 variable "iam_user" {
   type = string
 }
