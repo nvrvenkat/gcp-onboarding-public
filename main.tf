@@ -119,7 +119,7 @@ module "gke_alerts" {
 
 module "gke_backup" {
 
-  source = "./modules/gke-backup"
+  source = "./modules/gke_backup"
 
   enable_gke_backup_plan = var.enable_gke_backup_plan
 
