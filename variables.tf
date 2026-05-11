@@ -272,7 +272,3 @@ variable "asset_feed_name" {
 variable "labels_to_apply" {
   type = map(string)
 }
-
-variable "organization_id" {
-  type = string
-}
