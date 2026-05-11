@@ -143,11 +143,3 @@ variable "request_path" {
 variable "is_global" {
   type = bool
 }
-
-variable "bucket_names" {
-  type = list(string)
-}
-
-variable "lifecycle_age_days" {
-  type = number
-}
