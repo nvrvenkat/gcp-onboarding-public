@@ -28,7 +28,7 @@ data "google_project" "current" {
 
 # ----------------------------------------
 # Pub/Sub Topic
-# ----------------------------------------
+# ----------------------------------------  
 
 resource "google_pubsub_topic" "asset_events" {
 
@@ -236,4 +236,13 @@ resource "google_cloudfunctions2_function" "labeler_function" {
 
     retry_policy = "RETRY_POLICY_RETRY"
   }
+}
+
+resource "google_service_account_iam_member" "cloudrun_actas" {
+
+  service_account_id = "projects/${var.project_id}/serviceAccounts/${data.google_project.current.number}-compute@developer.gserviceaccount.com"
+
+  role = "roles/iam.serviceAccountUser"
+
+  member = "serviceAccount:${google_service_account.labeler_sa.email}"
 }
