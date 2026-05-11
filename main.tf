@@ -58,8 +58,7 @@ module "custom_iam_role" {
   source = "./modules/iam-least-priviledge-role"
 
   project_id = var.project_id
-
-  iam_user = var.iam_user
+  iam_user   = var.iam_user
 
   create_custom_roles = var.create_custom_roles
 
