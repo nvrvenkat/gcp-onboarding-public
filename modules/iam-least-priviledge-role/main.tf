@@ -10,7 +10,8 @@ locals {
 }
 
 resource "google_project_iam_custom_role" "custom_roles" {
-  for_each = local.roles
+
+  for_each = var.create_custom_roles ? local.roles : {}
 
   project = var.project_id
 
@@ -23,12 +24,24 @@ resource "google_project_iam_custom_role" "custom_roles" {
   permissions = each.value.includedPermissions
 }
 
-resource "google_project_iam_member" "bindings" {
+resource "google_project_iam_member" "custom_role_bindings" {
+
   for_each = google_project_iam_custom_role.custom_roles
 
   project = var.project_id
 
   role = each.value.name
+
+  member = var.iam_user
+}
+
+resource "google_project_iam_member" "viewer_binding" {
+
+  count = var.enable_viewer_role ? 1 : 0
+
+  project = var.project_id
+
+  role = "roles/viewer"
 
   member = var.iam_user
 }
