@@ -131,3 +131,35 @@ module "gke_backup" {
   gke_backup_cron_schedule  = var.gke_backup_cron_schedule
 
 }
+
+module "budget_alert" {
+
+  source = "./modules/budget-alert"
+
+  enable_budget_alert = var.enable_budget_alert
+
+  billing_account_id = var.billing_account_id
+  budget_name        = var.budget_name
+  project_number     = var.project_number
+  budget_amount      = var.budget_amount
+
+  notification_channel_id = module.notification_channel.notification_channel_id
+
+}
+
+module "resource_tagging" {
+
+  source = "./modules/resource-tagging"
+
+  project_id      = var.project_id
+  region          = var.region
+  organization_id = var.organization_id
+
+  function_name = var.function_name
+
+  pubsub_topic_name = var.pubsub_topic_name
+
+  asset_feed_name = var.asset_feed_name
+
+  labels_to_apply = var.labels_to_apply
+}
