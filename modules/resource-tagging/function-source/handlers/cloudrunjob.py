@@ -66,7 +66,6 @@ def handle_cloud_run_job(asset, LABELS):
         .jobs()
         .patch(
             name=full_name,
-            updateMask="labels",
             body=body
         )
         .execute()
