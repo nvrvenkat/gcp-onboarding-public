@@ -192,10 +192,10 @@ variable "enable_gke_cluster_cpu_memory_saturation_alert" {
   default = false
 }
 
-#variable "enable_gke_backup_failure_alert" {
-#  type    = bool
-#  default = false
-#}
+variable "enable_gke_backup_failure_alert" {
+  type    = bool
+  default = false
+}
 
 #variable "enable_gke_backup_plan" {
 #  type    = bool
