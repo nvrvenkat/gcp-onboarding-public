@@ -99,3 +99,20 @@ module "cloudarmor_policy" {
 
   default_rule_action = var.default_rule_action
 }
+
+# root/main.tf
+
+module "gke_alerts" {
+
+  source = "./modules/gke-alerts-backup"
+
+  enable_gke_node_cpu_80_alert                  = var.enable_gke_node_cpu_80_alert
+  enable_gke_node_memory_80_alert               = var.enable_gke_node_memory_80_alert
+  enable_gke_node_disk_80_alert                 = var.enable_gke_node_disk_80_alert
+  enable_gke_crashloopbackoff_alert             = var.enable_gke_crashloopbackoff_alert
+  enable_gke_pending_pods_alert                 = var.enable_gke_pending_pods_alert
+  enable_gke_cluster_cpu_memory_saturation_alert = var.enable_gke_cluster_cpu_memory_saturation_alert
+  enable_gke_backup_failure_alert               = var.enable_gke_backup_failure_alert
+
+  notification_channel_id = module.notification_channel.notification_channel_id
+}
