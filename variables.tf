@@ -285,7 +285,8 @@ variable "function_name" {
 }
 
 variable "pubsub_topic_name" {
-  type        =  "Pub/Sub topic used to receive resource change events"
+  type        = string
+  description = "Pub/Sub topic used to receive resource change events"
 }
 
 variable "asset_feed_name" {
