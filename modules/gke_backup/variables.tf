@@ -1,26 +1,26 @@
-variable "enable_gke_backup_plan" {
-  type    = bool
-  default = false
+variable "project_id" {
+  type        = string
+  description = "The GCP Project ID where the GKE cluster is located."
 }
 
-variable "gke_backup_plan_name" {
-  type = string
+variable "region" {
+  type        = string
+  description = "The GCP region where the backup plan will be created."
 }
 
-variable "gke_cluster_id" {
-  type = string
+variable "environment" {
+  type        = string
+  description = "The deployment environment (e.g., 'Prod' or 'Stage') used to derive retention periods."
 }
 
-variable "gke_backup_region" {
-  type = string
+variable "enable_gke_backup_governance" {
+  type        = bool
+  default     = false
+  description = "Master toggle to enable or disable the GKE Backup Plan infrastructure."
 }
 
-variable "gke_backup_retention_days" {
-  type    = number
-  default = 7
-}
-
-variable "gke_backup_cron_schedule" {
-  type    = string
-  default = "0 1 * * *"
+variable "cluster_id" {
+  type        = string
+  default     = ""
+  description = "The full resource ID of the GKE cluster to be backed up."
 }

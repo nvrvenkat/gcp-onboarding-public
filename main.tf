@@ -65,18 +65,18 @@ module "lb_monitoring" {
 # root/main.tf
 
 module "gke_alerts" {
+  source                        = "./modules/gke-alerts"
+  enable_gke_utilization_alerts = var.Enable_GKE_Utilization_Alerts
+  notification_channel_id       = module.notification_channel.notification_channel_id
+}
 
-  source = "./modules/gke-alerts"
-
-  enable_gke_node_cpu_80_alert                   = var.enable_gke_node_cpu_80_alert
-  enable_gke_node_memory_80_alert                = var.enable_gke_node_memory_80_alert
-  enable_gke_node_disk_80_alert                  = var.enable_gke_node_disk_80_alert
-  enable_gke_crashloopbackoff_alert              = var.enable_gke_crashloopbackoff_alert
-  enable_gke_pending_pods_alert                  = var.enable_gke_pending_pods_alert
-  enable_gke_cluster_cpu_memory_saturation_alert = var.enable_gke_cluster_cpu_memory_saturation_alert
-  enable_gke_backup_failure_alert                = var.enable_gke_backup_failure_alert
-
-  notification_channel_id = module.notification_channel.notification_channel_id
+module "gke_backup" {
+  source                       = "./modules/gke_backup"
+  enable_gke_backup_governance = var.Enable_GKE_Backup_Governance
+  cluster_id                   = var.GKE_Cluster_ID
+  environment                  = var.Environment
+  project_id                   = var.Project_Id
+  region                       = var.Region
 }
 
 #module "gke_backup" {

@@ -266,24 +266,22 @@ variable "LB_Names_to_Monitor" {
 #   default = "0 1 * * *"
 # }
 
-variable "enable_gke_utilization_alerts" {
+variable "Enable_GKE_Utilization_Alerts" {
   type        = bool
   default     = false
-  description = "If true, enables all GKE performance and health alerts for clusters labeled with 'monitoring=true'."
+  description = "Enables all GKE performance and health alerts for clusters labeled with 'monitoring=true'."
 }
 
-variable "gke_backup_config" {
-  type = object({
-    enable     = bool
-    cluster_id = string
-    region     = string
-  })
-  default = {
-    enable     = false
-    cluster_id = ""
-    region     = ""
-  }
-  description = "GKE Backup configuration. Retention is derived from the Environment variable."
+variable "Enable_GKE_Backup_Governance" {
+  type        = bool
+  default     = false
+  description = "If true, sets up the GKE Backup Plan infrastructure. Clusters labeled 'backup=true' will be targeted."
+}
+
+variable "GKE_Cluster_ID" {
+  type        = string
+  default     = ""
+  description = "The full resource ID of the GKE cluster (e.g., projects/project-id/locations/region/clusters/cluster-name)."
 }
 
 variable "enable_budget_alert" {
