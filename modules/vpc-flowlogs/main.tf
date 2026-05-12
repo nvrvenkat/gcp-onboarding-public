@@ -21,11 +21,10 @@ resource "google_compute_subnetwork" "network_logging" {
   }
 }
 
-resource "google_logging_project_bucket" "vpc_flow_log_bucket" {
+resource "google_logging_bucket_config" "vpc_flow_log_bucket" {
   count      = var.enable_vpc_flow_logs ? 1 : 0
   project    = var.project_id
   location   = "global"
   bucket_id  = "${var.customer_name}-vpc-flow-logs"
-  
   retention_days = var.environment == "Prod" ? 30 : 7
 }

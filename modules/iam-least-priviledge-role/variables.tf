@@ -11,3 +11,11 @@ variable "enable_viewer_role" {
   type    = bool
   default = true
 }
+
+variable "iam_config" {
+  type = object({
+    user                = string
+    create_custom_roles = bool
+    enable_viewer_role  = bool
+  })
+}
