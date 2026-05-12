@@ -93,89 +93,16 @@ variable "Enable_Service_Account_Key_Deletion_Alerts" {
   description = "Alert policy for service account key deletion"
 }
 
-variable "enable_vm_cpu_80_alert" {
+variable "Enable_VM_Utilization_Alerts" {
   type        = bool
   default     = false
-  description = "Enable or disable VM CPU utilization alert policy"
+  description = "Enables CPU, Memory, and Disk alerts for VMs labeled with 'monitoring=true'."
 }
 
-variable "enable_vm_cpu_90_alert" {
+variable "Enable_CloudSQL_Utilization_Alerts" {
   type        = bool
   default     = false
-  description = "Enable or disable VM CPU utilization alert policy"
-}
-
-variable "enable_vm_memory_80_alert" {
-  type        = bool
-  default     = false
-  description = "Enable or disable VM Memory utilization alert policy"
-}
-
-variable "enable_vm_memory_90_alert" {
-  type        = bool
-  default     = false
-  description = "Enable or disable VM Memory utilization alert policy"
-}
-
-variable "enable_vm_disk_80_alert" {
-  type        = bool
-  default     = false
-  description = "Enable or disable VM disk utilization alert policy"
-}
-
-variable "enable_vm_disk_90_alert" {
-  type        = bool
-  default     = false
-  description = "Enable or disable VM disk utilization alert policy"
-}
-
-variable "enable_cloudsql_cpu_80_alert" {
-  type        = bool
-  default     = false
-  description = "Enable or disable Cloudsql CPU utilization alert policy"
-}
-
-variable "enable_cloudsql_cpu_90_alert" {
-  type        = bool
-  default     = false
-  description = "Enable or disable Cloudsql CPU utilization alert policy"
-}
-
-variable "enable_cloudsql_memory_80_alert" {
-  type        = bool
-  default     = false
-  description = "Enable or disable Cloudsql Memory utilization alert policy"
-
-}
-
-variable "enable_cloudsql_memory_90_alert" {
-  type        = bool
-  default     = false
-  description = "Enable or disable Cloudsql Memory utilization alert policy"
-}
-
-variable "enable_cloudsql_disk_80_alert" {
-  type        = bool
-  default     = false
-  description = "Enable or disable Cloudsql disk utilization alert policy"
-}
-
-variable "enable_cloudsql_disk_90_alert" {
-  type        = bool
-  default     = false
-  description = "Enable or disable Cloudsql disk utilization alert policy"
-}
-
-variable "enable_cloudsql_replication_lag_alert" {
-  type        = bool
-  default     = false
-  description = "Enable or disable Cloudsql replication_lag alert policy"
-}
-
-variable "enable_cloudsql_active_connections_alert" {
-  type        = bool
-  default     = false
-  description = "Enable or disable Cloudsql active-connections alert policy"
+  description = "Enables CPU, Memory, Disk, Connections, and Lag alerts for Cloud SQL instances labeled with 'monitoring=true'."
 }
 
 variable "iam_user" {

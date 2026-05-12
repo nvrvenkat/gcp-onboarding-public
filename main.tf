@@ -19,39 +19,18 @@ module "snapshot_schedule" {
   environment = var.Environment
 }
 
-module "vm-alerts" {
-  source = "./modules/vm-alerts"
-
-  notification_channel_id = module.notification_channel.notification_channel_id
-
-  enable_vm_cpu_80_alert = var.enable_vm_cpu_80_alert
-  enable_vm_cpu_90_alert = var.enable_vm_cpu_90_alert
-
-  enable_vm_memory_80_alert = var.enable_vm_memory_80_alert
-  enable_vm_memory_90_alert = var.enable_vm_memory_90_alert
-
-  enable_vm_disk_80_alert = var.enable_vm_disk_80_alert
-  enable_vm_disk_90_alert = var.enable_vm_disk_90_alert
+module "vm_alerts" {
+  source                       = "./modules/vm-alerts"
+  enable_vm_utilization_alerts = var.Enable_VM_Utilization_Alerts
+  notification_channel_id      = module.notification_channel.notification_channel_id
+  depends_on                   = [module.notification_channel]
 }
 
 module "cloudsql_alerts" {
-
-  source = "./modules/cloudsql-alerts"
-
-  notification_channel_id = module.notification_channel.notification_channel_id
-
-  enable_cloudsql_cpu_80_alert = var.enable_cloudsql_cpu_80_alert
-  enable_cloudsql_cpu_90_alert = var.enable_cloudsql_cpu_90_alert
-
-  enable_cloudsql_memory_80_alert = var.enable_cloudsql_memory_80_alert
-  enable_cloudsql_memory_90_alert = var.enable_cloudsql_memory_90_alert
-
-  enable_cloudsql_disk_80_alert = var.enable_cloudsql_disk_80_alert
-  enable_cloudsql_disk_90_alert = var.enable_cloudsql_disk_90_alert
-
-  enable_cloudsql_replication_lag_alert = var.enable_cloudsql_replication_lag_alert
-
-  enable_cloudsql_active_connections_alert = var.enable_cloudsql_active_connections_alert
+  source                             = "./modules/cloudsql-alerts"
+  enable_cloudsql_utilization_alerts = var.Enable_CloudSQL_Utilization_Alerts
+  notification_channel_id            = module.notification_channel.notification_channel_id
+  depends_on                         = [module.notification_channel]
 }
 
 module "custom_iam_role" {

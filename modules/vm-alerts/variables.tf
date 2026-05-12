@@ -1,33 +1,8 @@
-variable "enable_vm_cpu_80_alert" {
-  type    = bool
-  default = false
+variable "enable_vm_utilization_alerts" {
+  type        = bool
+  default     = false
+  description = "If true, enables CPU, Memory, and Disk alerts for VMs labeled with 'monitoring=true'."
 }
-
-variable "enable_vm_cpu_90_alert" {
-  type    = bool
-  default = false
-}
-
-variable "enable_vm_memory_80_alert" {
-  type    = bool
-  default = false
-}
-
-variable "enable_vm_memory_90_alert" {
-  type    = bool
-  default = false
-}
-
-variable "enable_vm_disk_80_alert" {
-  type    = bool
-  default = false
-}
-
-variable "enable_vm_disk_90_alert" {
-  type    = bool
-  default = false
-}
-
 variable "notification_channel_id" {
   type = string
 }
