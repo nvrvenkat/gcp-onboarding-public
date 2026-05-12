@@ -138,6 +138,7 @@ module "budget_alert" {
 
 module "resource_tagging" {
   source            = "./modules/resource-tagging"
+  count  = var.EnableResourceTagging ? 1 : 0
   project_id        = var.Project_Id
   region            = var.Region
   function_name     = "${var.Customer_Name}-tagger"
