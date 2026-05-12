@@ -7,14 +7,17 @@ variable "region" {
 }
 
 variable "function_name" {
+  default = "automatic-resource-tagging-fn"
   type = string
 }
 
 variable "pubsub_topic_name" {
+  default = "automatic-resource-tagging-topic"
   type = string
 }
 
 variable "asset_feed_name" {
+  default = "automatic-resource-tagging-asset"
   type = string
 }
 
