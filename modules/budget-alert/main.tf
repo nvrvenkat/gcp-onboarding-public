@@ -31,6 +31,6 @@ resource "google_billing_budget" "budget" {
   }
 
   all_updates_rule {
-    monitoring_notification_channels = [var.notification_channel_id]
+    monitoring_notification_channels = var.enable_monitoring ? [var.notification_channel_id] : []
   }
 }

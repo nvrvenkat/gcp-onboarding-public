@@ -1,8 +1,13 @@
 variable "enable_vm_utilization_alerts" {
-  type        = bool
-  default     = false
-  description = "If true, enables CPU, Memory, and Disk alerts for VMs labeled with 'monitoring=true'."
+  type    = bool
+  default = false
 }
+
+variable "enable_monitoring" {
+  type        = bool
+  description = "Master toggle for notifications (AWS Parity)."
+}
+
 variable "notification_channel_id" {
   type = string
 }

@@ -1,4 +1,4 @@
-# CPU Alert Example
+# CPU Utilization Alert
 resource "google_monitoring_alert_policy" "vm_cpu_90" {
   count = var.enable_vm_utilization_alerts ? 1 : 0
 
@@ -23,10 +23,11 @@ resource "google_monitoring_alert_policy" "vm_cpu_90" {
       }
     }
   }
-  notification_channels = [var.notification_channel_id]
+
+  notification_channels = var.enable_monitoring ? [var.notification_channel_id] : []
 }
 
-# Memory Alert Example
+# Memory Utilization Alert (Requires Ops Agent)
 resource "google_monitoring_alert_policy" "vm_memory_90" {
   count = var.enable_vm_utilization_alerts ? 1 : 0
 
@@ -51,10 +52,10 @@ resource "google_monitoring_alert_policy" "vm_memory_90" {
       }
     }
   }
-  notification_channels = [var.notification_channel_id]
+
+  notification_channels = var.enable_monitoring ? [var.notification_channel_id] : []
 }
 
-# Disk Alert
 resource "google_monitoring_alert_policy" "vm_disk_90" {
   count = var.enable_vm_utilization_alerts ? 1 : 0
 
@@ -79,5 +80,6 @@ resource "google_monitoring_alert_policy" "vm_disk_90" {
       }
     }
   }
-  notification_channels = [var.notification_channel_id]
+
+  notification_channels = var.enable_monitoring ? [var.notification_channel_id] : []
 }

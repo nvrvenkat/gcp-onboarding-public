@@ -7,3 +7,7 @@ variable "notification_channel_id" {
   type        = string
   description = "The ID of the notification channel where Load Balancer error alerts will be sent."
 }
+
+variable "enable_monitoring" {
+  type = bool
+}

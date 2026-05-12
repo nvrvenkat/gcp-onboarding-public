@@ -41,3 +41,7 @@ variable "enable_service_account_key_deletion_alert" {
 variable "notification_channel_id" {
   type = string
 }
+
+variable "enable_monitoring" {
+  type = bool
+}

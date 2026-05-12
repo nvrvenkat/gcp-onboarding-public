@@ -22,8 +22,8 @@ module "snapshot_schedule" {
 module "vm_alerts" {
   source                       = "./modules/vm-alerts"
   enable_vm_utilization_alerts = var.Enable_VM_Utilization_Alerts
+  enable_monitoring            = var.Enable_Monitoring
   notification_channel_id      = module.notification_channel.notification_channel_id
-  depends_on                   = [module.notification_channel]
 }
 
 module "cloudsql_alerts" {

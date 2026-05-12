@@ -23,7 +23,8 @@ resource "google_monitoring_alert_policy" "cloudsql_cpu_90" {
       }
     }
   }
-  notification_channels = [var.notification_channel_id]
+
+  notification_channels = var.enable_monitoring ? [var.notification_channel_id] : []
 }
 
 # CloudSQL Memory Alert
@@ -51,7 +52,7 @@ resource "google_monitoring_alert_policy" "cloudsql_memory_90" {
       }
     }
   }
-  notification_channels = [var.notification_channel_id]
+  notification_channels = var.enable_monitoring ? [var.notification_channel_id] : []
 }
 
 # CloudSQL Disk Alert
@@ -79,7 +80,7 @@ resource "google_monitoring_alert_policy" "cloudsql_disk_90" {
       }
     }
   }
-  notification_channels = [var.notification_channel_id]
+  notification_channels = var.enable_monitoring ? [var.notification_channel_id] : []
 }
 
 # CloudSQL Replication Lag Alert
@@ -107,7 +108,7 @@ resource "google_monitoring_alert_policy" "cloudsql_replication_lag" {
       }
     }
   }
-  notification_channels = [var.notification_channel_id]
+  notification_channels = var.enable_monitoring ? [var.notification_channel_id] : []
 }
 
 # CloudSQL Active Connections Alert
@@ -135,5 +136,5 @@ resource "google_monitoring_alert_policy" "cloudsql_active_connections" {
       }
     }
   }
-  notification_channels = [var.notification_channel_id]
+  notification_channels = var.enable_monitoring ? [var.notification_channel_id] : []
 }

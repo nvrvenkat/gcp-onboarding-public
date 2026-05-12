@@ -24,7 +24,7 @@ resource "google_monitoring_alert_policy" "lb_5xx_alert" {
       }
     }
   }
-  notification_channels = [var.notification_channel_id]
+  notification_channels = var.enable_monitoring ? [var.notification_channel_id] : []
 }
 
 # 4xx Error Alert (Matches AWS high_4xx logic)
@@ -44,7 +44,7 @@ resource "google_monitoring_alert_policy" "lb_4xx_alert" {
       EOT
 
       comparison      = "COMPARISON_GT"
-      threshold_value = 50 # Alert if more than 50 errors occur
+      threshold_value = 50
       duration        = "60s"
       aggregations {
         alignment_period   = "60s"
@@ -52,5 +52,5 @@ resource "google_monitoring_alert_policy" "lb_4xx_alert" {
       }
     }
   }
-  notification_channels = [var.notification_channel_id]
+  notification_channels = var.enable_monitoring ? [var.notification_channel_id] : []
 }
