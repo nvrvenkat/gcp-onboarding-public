@@ -17,20 +17,24 @@ def handle_gke_cluster(asset, LABELS):
 
     project = parts[4]
 
-    region_or_zone = parts[6]
+    location = parts[6]
 
     cluster_name = parts[7]
 
     print(f"Project: {project}")
-    print(f"Location: {region_or_zone}")
+    print(f"Location: {location}")
     print(f"Cluster: {cluster_name}")
+
+    full_name = (
+        f"projects/{project}/locations/{location}/clusters/{cluster_name}"
+    )
 
     cluster = (
         container.projects()
         .locations()
         .clusters()
         .get(
-            name=f"projects/{project}/locations/{region_or_zone}/clusters/{cluster_name}"
+            name=full_name
         )
         .execute()
     )
@@ -61,9 +65,9 @@ def handle_gke_cluster(asset, LABELS):
         container.projects()
         .locations()
         .clusters()
-        .resourceLabels(
+        .setResourceLabels(
             projectId=project,
-            zone=region_or_zone,
+            zone=location,
             clusterId=cluster_name,
             body=body
         )

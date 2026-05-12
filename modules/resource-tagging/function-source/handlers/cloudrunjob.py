@@ -56,9 +56,7 @@ def handle_cloud_run_job(asset, LABELS):
 
         return
 
-    body = {
-        "labels": merged_labels
-    }
+    job["labels"] = merged_labels
 
     operation = (
         run.projects()
@@ -66,7 +64,8 @@ def handle_cloud_run_job(asset, LABELS):
         .jobs()
         .patch(
             name=full_name,
-            body=body
+            updateMask="labels",
+            body=job
         )
         .execute()
     )

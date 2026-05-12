@@ -31,7 +31,10 @@ def handle_cloud_sql(asset, LABELS):
         .execute()
     )
 
-    existing_labels = instance.get("settings", {}).get("userLabels", {})
+    existing_labels = (
+        instance.get("settings", {})
+        .get("userLabels", {})
+    )
 
     print(f"Existing Labels: {existing_labels}")
 
@@ -50,7 +53,10 @@ def handle_cloud_sql(asset, LABELS):
 
     body = {
         "settings": {
-            "userLabels": merged_labels
+            "userLabels": merged_labels,
+            "settingsVersion": (
+                instance["settings"]["settingsVersion"]
+            )
         }
     }
 
