@@ -34,15 +34,8 @@ module "cloudsql_alerts" {
 }
 
 module "custom_iam_role" {
-
-  source = "./modules/iam-least-priviledge-role"
-
+  source     = "./modules/iam-least-priviledge-role"
   project_id = var.Project_Id
-  iam_user   = var.iam_user
-
-  create_custom_roles = var.create_custom_roles
-
-  enable_viewer_role = var.enable_viewer_role
 }
 
 module "lb_health_check" {

@@ -105,22 +105,32 @@ variable "Enable_CloudSQL_Utilization_Alerts" {
   description = "Enables CPU, Memory, Disk, Connections, and Lag alerts for Cloud SQL instances labeled with 'monitoring=true'."
 }
 
-variable "iam_user" {
-  type        = string
-  description = "IAM user to attach the custom role"
+# variable "iam_user" {
+#   type        = string
+#   description = "IAM user to attach the custom role"
+# }
+
+# variable "create_custom_roles" {
+#   type        = bool
+#   default     = true
+#   description = "Least-priviledge role"
+# }
+
+# variable "enable_viewer_role" {
+#   type        = bool
+#   default     = true
+#   description = "Viewer role"
+# }
+
+variable "iam_config" {
+  type = object({
+    user                = string
+    create_custom_roles = optional(bool, true)
+    enable_viewer_role  = optional(bool, true)
+  })
+  description = "IAM user and role configuration for onboarding."
 }
 
-variable "create_custom_roles" {
-  type        = bool
-  default     = true
-  description = "Least-priviledge role"
-}
-
-variable "enable_viewer_role" {
-  type        = bool
-  default     = true
-  description = "Viewer role"
-}
 variable "health_check_name" {
   type        = string
   description = "Name of the load balancer health check"
