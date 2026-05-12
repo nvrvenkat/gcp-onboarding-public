@@ -18,7 +18,7 @@ variable "Region" {
 variable "Environment" {
   type        = string
   default     = "Stage"
-  description = "Set to 'Prod' (30-day retention) or 'Stage' (7-day retention). Applies "
+  description = "Set to 'Prod' (30-day retention) or 'Stage' (7-day retention)."
 }
 
 variable "Enable_Monitoring" {
@@ -37,6 +37,17 @@ variable "Enable_Snapshot_Schedule" {
   type        = bool
   default     = false
   description = "If true, enables automated daily snapshots for VM disks. Retention will be set based on Environment."
+}
+
+variable "Enable_VPC_Flow_Logs" {
+  type    = bool
+  default = false
+}
+
+variable "VPC_Names" {
+  type        = string
+  default     = ""
+  description = "Comma-separated list of VPC/Subnetwork names to enable logging."
 }
 
 variable "Enable_IAM_Policy_Change_Alerts" {

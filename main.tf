@@ -19,6 +19,19 @@ module "snapshot_schedule" {
   environment = var.Environment
 }
 
+module "vpc_flowlogs" {
+  source               = "./modules/vpc-flowlogs"
+  count                = var.Enable_VPC_Flow_Logs ? 1 : 0
+  
+  customer_name        = var.Customer_Name
+  project_id           = var.Project_Id
+  region               = var.Region
+  environment          = var.Environment
+  enable_vpc_flow_logs = var.Enable_Monitoring
+
+  vpc_names            = compact(split(",", replace(var.VPC_Names, " ", "")))
+}
+
 module "vm_alerts" {
   source                       = "./modules/vm-alerts"
   enable_vm_utilization_alerts = var.Enable_VM_Utilization_Alerts
