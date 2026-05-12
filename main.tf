@@ -47,16 +47,16 @@ module "cloudsql_alerts" {
   depends_on                         = [module.notification_channel]
 }
 
-module "custom_iam_role" {
-  source     = "./modules/iam-least-priviledge-role"
-  project_id = var.Project_Id
-}
+# module "custom_iam_role" {
+#   source     = "./modules/iam-least-priviledge-role"
+#   project_id = var.Project_Id
+# }
 
 module "lb_monitoring" {
   source                  = "./modules/lb-monitoring"
   count                   = var.Enable_LB_Monitoring ? 1 : 0
   lb_names                = compact(split(",", replace(var.LB_Names_to_Monitor, " ", "")))
-  notification_channel_id = module.notification_channel.notification_channel_ids[0]
+  notification_channel_ids = module.notification_channel.notification_channel_ids
   enable_monitoring       = var.Enable_Monitoring
 }
 
@@ -162,6 +162,7 @@ module "monitoring_alerts" {
   enable_service_account_creation_alert = var.Enable_Service_Account_Creation_Alerts
   enable_disk_deletion_alert = var.Enable_Disk_Deletion_Alerts
   enable_service_account_key_deletion_alert = var.Enable_Service_Account_Key_Deletion_Alerts
-  notification_channel_id = module.notification_channel.notification_channel_id
+  #notification_channel_id = module.notification_channel.notification_channel_id
   enable_monitoring       = var.Enable_Monitoring
+  notification_channel_ids = module.notification_channel.notification_channel_ids
 }
