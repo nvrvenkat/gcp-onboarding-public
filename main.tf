@@ -30,6 +30,7 @@ module "cloudsql_alerts" {
   source                             = "./modules/cloudsql-alerts"
   enable_cloudsql_utilization_alerts = var.Enable_CloudSQL_Utilization_Alerts
   notification_channel_id            = module.notification_channel.notification_channel_id
+  enable_monitoring                  = var.Enable_Monitoring
   depends_on                         = [module.notification_channel]
 }
 
@@ -43,6 +44,7 @@ module "lb_monitoring" {
   count                   = var.Enable_LB_Monitoring ? 1 : 0
   lb_names                = compact(split(",", replace(var.LB_Names_to_Monitor, " ", "")))
   notification_channel_id = module.notification_channel.notification_channel_ids[0]
+  enable_monitoring       = var.Enable_Monitoring
 }
 
 # module "cloudarmor_policy" {
@@ -68,6 +70,7 @@ module "gke_alerts" {
   source                        = "./modules/gke-alerts"
   enable_gke_utilization_alerts = var.Enable_GKE_Utilization_Alerts
   notification_channel_id       = module.notification_channel.notification_channel_id
+  enable_monitoring             = var.Enable_Monitoring
 }
 
 module "gke_backup" {
@@ -117,6 +120,7 @@ module "budget_alert" {
   budget_limit            = var.SET_BudgetLimit
   thresholds              = var.SET_BudgetActualThresholds
   notification_channel_id = module.notification_channel.notification_channel_id
+  enable_monitoring       = var.Enable_Monitoring
 }
 
 module "resource_tagging" {
@@ -146,4 +150,5 @@ module "monitoring_alerts" {
   enable_disk_deletion_alert = var.Enable_Disk_Deletion_Alerts
   enable_service_account_key_deletion_alert = var.Enable_Service_Account_Key_Deletion_Alerts
   notification_channel_id = module.notification_channel.notification_channel_id
+  enable_monitoring       = var.Enable_Monitoring
 }
