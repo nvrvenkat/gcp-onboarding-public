@@ -20,7 +20,7 @@ resource "google_monitoring_alert_policy" "gke_node_cpu_90" {
       }
     }
   }
-  notification_channels = var.enable_monitoring ? [var.notification_channel_id] : []
+  notification_channels = var.enable_monitoring ? var.notification_channel_ids : []
 }
 
 # GKE Node Memory Utilization Alert
@@ -45,7 +45,7 @@ resource "google_monitoring_alert_policy" "gke_node_memory_90" {
       }
     }
   }
-  notification_channels = var.enable_monitoring ? [var.notification_channel_id] : []
+  notification_channels = var.enable_monitoring ? var.notification_channel_ids : []
 }
 
 # GKE Node Disk Utilization Alert
@@ -70,7 +70,7 @@ resource "google_monitoring_alert_policy" "gke_node_disk_90" {
       }
     }
   }
-  notification_channels = var.enable_monitoring ? [var.notification_channel_id] : []
+  notification_channels = var.enable_monitoring ? var.notification_channel_ids : []
 }
 
 # GKE CrashLoopBackOff Pods Alert
@@ -95,7 +95,7 @@ resource "google_monitoring_alert_policy" "gke_crashloopbackoff" {
       }
     }
   }
-  notification_channels = var.enable_monitoring ? [var.notification_channel_id] : []
+  notification_channels = var.enable_monitoring ? var.notification_channel_ids : []
 }
 
 # GKE Pending Pods Alert
@@ -120,7 +120,7 @@ resource "google_monitoring_alert_policy" "gke_pending_pods" {
       }
     }
   }
-  notification_channels = var.enable_monitoring ? [var.notification_channel_id] : []
+  notification_channels = var.enable_monitoring ? var.notification_channel_ids : []
 }
 
 # GKE Cluster CPU/Memory Saturation Alert
@@ -145,7 +145,7 @@ resource "google_monitoring_alert_policy" "gke_cluster_saturation" {
       }
     }
   }
-  notification_channels = var.enable_monitoring ? [var.notification_channel_id] : []
+  notification_channels = var.enable_monitoring ? var.notification_channel_ids : []
 }
 
 # GKE Backup Failure Alert
@@ -169,5 +169,5 @@ resource "google_monitoring_alert_policy" "gke_backup_failure" {
       }
     }
   }
-  notification_channels = var.enable_monitoring ? [var.notification_channel_id] : []
+  notification_channels = var.enable_monitoring ? var.notification_channel_ids : []
 }

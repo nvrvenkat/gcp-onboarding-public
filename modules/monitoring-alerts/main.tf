@@ -18,7 +18,7 @@ EOT
     }
   }
 
-  notification_channels = var.enable_monitoring ? [var.notification_channel_id] : []
+  notification_channels = var.enable_monitoring ? var.notification_channel_ids : []
 }
 
 
@@ -43,7 +43,7 @@ EOT
     }
   }
 
-  notification_channels = var.enable_monitoring ? [var.notification_channel_id] : []
+  notification_channels = var.enable_monitoring ? var.notification_channel_ids : []
 }
 
 
@@ -68,7 +68,7 @@ EOT
     }
   }
 
-  notification_channels = var.enable_monitoring ? [var.notification_channel_id] : []
+  notification_channels = var.enable_monitoring ? var.notification_channel_ids : []
 }
 
 
@@ -93,7 +93,7 @@ EOT
     }
   }
 
-  notification_channels = var.enable_monitoring ? [var.notification_channel_id] : []
+  notification_channels = var.enable_monitoring ? var.notification_channel_ids : []
 }
 
 
@@ -118,7 +118,7 @@ EOT
     }
   }
 
-  notification_channels = var.enable_monitoring ? [var.notification_channel_id] : []
+  notification_channels = var.enable_monitoring ? var.notification_channel_ids : []
 }
 
 
@@ -143,7 +143,7 @@ EOT
     }
   }
 
-  notification_channels = var.enable_monitoring ? [var.notification_channel_id] : []
+  notification_channels = var.enable_monitoring ? var.notification_channel_ids : []
 }
 
 
@@ -168,7 +168,7 @@ EOT
     }
   }
 
-  notification_channels = var.enable_monitoring ? [var.notification_channel_id] : []
+  notification_channels = var.enable_monitoring ? var.notification_channel_ids : []
 }
 
 
@@ -193,5 +193,5 @@ EOT
     }
   }
 
-  notification_channels = var.enable_monitoring ? [var.notification_channel_id] : []
+  notification_channels = var.enable_monitoring ? var.notification_channel_ids : []
 }

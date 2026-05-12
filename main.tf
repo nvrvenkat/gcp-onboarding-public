@@ -36,13 +36,13 @@ module "vm_alerts" {
   source                       = "./modules/vm-alerts"
   enable_vm_utilization_alerts = var.Enable_VM_Utilization_Alerts
   enable_monitoring            = var.Enable_Monitoring
-  notification_channel_id      = module.notification_channel.notification_channel_id
+  notification_channel_ids = module.notification_channel.notification_channel_ids
 }
 
 module "cloudsql_alerts" {
   source                             = "./modules/cloudsql-alerts"
   enable_cloudsql_utilization_alerts = var.Enable_CloudSQL_Utilization_Alerts
-  notification_channel_id            = module.notification_channel.notification_channel_id
+  notification_channel_ids = module.notification_channel.notification_channel_ids
   enable_monitoring                  = var.Enable_Monitoring
   depends_on                         = [module.notification_channel]
 }
@@ -82,7 +82,7 @@ module "lb_monitoring" {
 module "gke_alerts" {
   source                        = "./modules/gke-alerts"
   enable_gke_utilization_alerts = var.Enable_GKE_Utilization_Alerts
-  notification_channel_id       = module.notification_channel.notification_channel_id
+  notification_channel_ids = module.notification_channel.notification_channel_ids
   enable_monitoring             = var.Enable_Monitoring
 }
 
@@ -132,8 +132,8 @@ module "budget_alert" {
   project_id              = var.Project_Id
   budget_limit            = var.SET_BudgetLimit
   thresholds              = var.SET_BudgetActualThresholds
-  notification_channel_id = module.notification_channel.notification_channel_id
   enable_monitoring       = var.Enable_Monitoring
+  notification_channel_ids = module.notification_channel.notification_channel_ids
 }
 
 module "resource_tagging" {

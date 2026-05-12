@@ -38,8 +38,9 @@ variable "enable_service_account_key_deletion_alert" {
   default = false
 }
 
-variable "notification_channel_id" {
-  type = string
+variable "notification_channel_ids" {
+  type        = list(string)
+  description = "List of notification channel IDs."
 }
 
 variable "enable_monitoring" {

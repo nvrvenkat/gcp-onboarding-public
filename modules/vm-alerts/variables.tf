@@ -8,6 +8,7 @@ variable "enable_monitoring" {
   description = "Master toggle for notifications (AWS Parity)."
 }
 
-variable "notification_channel_id" {
-  type = string
+variable "notification_channel_ids" {
+  type        = list(string)
+  description = "List of notification channel IDs."
 }

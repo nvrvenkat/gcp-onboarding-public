@@ -24,7 +24,7 @@ resource "google_monitoring_alert_policy" "vm_cpu_90" {
     }
   }
 
-  notification_channels = var.enable_monitoring ? [var.notification_channel_id] : []
+  notification_channels = var.enable_monitoring ? var.notification_channel_ids : []
 }
 
 # Memory Utilization Alert (Requires Ops Agent)
@@ -53,7 +53,7 @@ resource "google_monitoring_alert_policy" "vm_memory_90" {
     }
   }
 
-  notification_channels = var.enable_monitoring ? [var.notification_channel_id] : []
+  notification_channels = var.enable_monitoring ? var.notification_channel_ids : []
 }
 
 resource "google_monitoring_alert_policy" "vm_disk_90" {
@@ -81,5 +81,5 @@ resource "google_monitoring_alert_policy" "vm_disk_90" {
     }
   }
 
-  notification_channels = var.enable_monitoring ? [var.notification_channel_id] : []
+  notification_channels = var.enable_monitoring ? var.notification_channel_ids : []
 }

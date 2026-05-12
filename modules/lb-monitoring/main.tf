@@ -24,7 +24,7 @@ resource "google_monitoring_alert_policy" "lb_5xx_alert" {
       }
     }
   }
-  notification_channels = var.enable_monitoring ? [var.notification_channel_id] : []
+  notification_channels = var.enable_monitoring ? var.notification_channel_ids : []
 }
 
 # 4xx Error Alert (Matches AWS high_4xx logic)
@@ -52,5 +52,5 @@ resource "google_monitoring_alert_policy" "lb_4xx_alert" {
       }
     }
   }
-  notification_channels = var.enable_monitoring ? [var.notification_channel_id] : []
+  notification_channels = var.enable_monitoring ? var.notification_channel_ids : []
 }
