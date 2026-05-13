@@ -17,7 +17,11 @@ protoPayload.methodName="SetIamPolicy"
 EOT
     }
   }
-
+  alert_strategy {
+  notification_rate_limit {
+    period = "3600s" # One alert per hour max
+  }
+}
   notification_channels = var.enable_monitoring ? var.notification_channel_ids : []
 }
 
@@ -42,7 +46,11 @@ resource.type="gce_firewall_rule"
 EOT
     }
   }
-
+  alert_strategy {
+  notification_rate_limit {
+    period = "3600s" # One alert per hour max
+  }
+}
   notification_channels = var.enable_monitoring ? var.notification_channel_ids : []
 }
 
@@ -67,7 +75,11 @@ protoPayload.methodName="v1.compute.instances.delete"
 EOT
     }
   }
-
+  alert_strategy {
+  notification_rate_limit {
+    period = "3600s" # One alert per hour max
+  }
+}
   notification_channels = var.enable_monitoring ? var.notification_channel_ids : []
 }
 
@@ -92,7 +104,11 @@ protoPayload.methodName="v1.compute.instances.insert"
 EOT
     }
   }
-
+  alert_strategy {
+  notification_rate_limit {
+    period = "3600s" # One alert per hour max
+  }
+  }
   notification_channels = var.enable_monitoring ? var.notification_channel_ids : []
 }
 
@@ -117,7 +133,11 @@ protoPayload.methodName:"setLabels"
 EOT
     }
   }
-
+  alert_strategy {
+  notification_rate_limit {
+    period = "3600s" # One alert per hour max
+  }
+  }
   notification_channels = var.enable_monitoring ? var.notification_channel_ids : []
 }
 
@@ -142,7 +162,11 @@ protoPayload.methodName="google.iam.admin.v1.CreateServiceAccount"
 EOT
     }
   }
-
+  alert_strategy {
+  notification_rate_limit {
+    period = "3600s" # One alert per hour max
+  }
+  }
   notification_channels = var.enable_monitoring ? var.notification_channel_ids : []
 }
 
@@ -166,6 +190,12 @@ resource "google_monitoring_alert_policy" "disk_deletion" {
 protoPayload.methodName="v1.compute.disks.delete"
 EOT
     }
+  }
+  
+  alert_strategy {
+  notification_rate_limit {
+    period = "3600s" # One alert per hour max
+  }
   }
 
   notification_channels = var.enable_monitoring ? var.notification_channel_ids : []
@@ -192,6 +222,10 @@ protoPayload.methodName="google.iam.admin.v1.DeleteServiceAccountKey"
 EOT
     }
   }
-
+  alert_strategy {
+  notification_rate_limit {
+    period = "3600s" # One alert per hour max
+  }
+}
   notification_channels = var.enable_monitoring ? var.notification_channel_ids : []
 }
