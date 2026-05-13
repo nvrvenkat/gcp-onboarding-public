@@ -46,8 +46,7 @@ variable "Enable_VPC_Flow_Logs" {
 
 variable "VPC_Subnet_Names" {
   type        = string
-  default     = ""
-  description = "Comma-separated list of VPC/Subnetwork names to enable logging."
+  description = "Format: vpc1/subnet1, vpc2/subnet2"
 }
 
 variable "Enable_IAM_Policy_Change_Alerts" {

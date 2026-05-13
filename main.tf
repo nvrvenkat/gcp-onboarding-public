@@ -18,14 +18,14 @@ module "vpc_flowlogs" {
   source               = "./modules/vpc-flowlogs"
   count                = var.Enable_VPC_Flow_Logs ? 1 : 0
   
-  customer_name        = var.Customer_Name
+  vpc_names            = var.VPC_Subnet_Names 
+  
   project_id           = var.Project_Id
+  customer_name        = var.Customer_Name
   region               = var.Region
   environment          = var.Environment
-  enable_vpc_flow_logs = var.Enable_Monitoring
-
-  vpc_names = var.VPC_Subnet_Names
-  enable_monitoring                  = var.Enable_Monitoring
+  enable_vpc_flow_logs = var.Enable_VPC_Flow_Logs
+  enable_monitoring    = var.Enable_Monitoring
 }
 
 module "vm_alerts" {
