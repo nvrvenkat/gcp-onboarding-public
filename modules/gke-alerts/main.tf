@@ -157,7 +157,7 @@ resource "google_monitoring_alert_policy" "gke_backup_failure" {
     display_name = "Backup Failed"
     condition_threshold {
       filter = <<EOT
-        resource.type="gkebackup.googleapis.com/Backup" 
+        resource.type="gkebackup.googleapis.com/BackupPlan" 
         AND metadata.user_labels.monitoring="true"
       EOT
       comparison      = "COMPARISON_GT"
