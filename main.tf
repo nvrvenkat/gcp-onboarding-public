@@ -57,23 +57,14 @@ module "lb_monitoring" {
 }
 
 # module "cloudarmor_policy" {
-
 #   source = "./modules/cloudarmor-policy"
-
 #   project_id = var.Project_Id
-
 #   security_policy_name = var.security_policy_name
-
 #   rule_priority = var.rule_priority
-
 #   rule_action = var.rule_action
-
 #   src_ip_ranges = var.src_ip_ranges
-
 #   default_rule_action = var.default_rule_action
 # }
-
-# root/main.tf
 
 module "gke_alerts" {
   source                        = "./modules/gke-alerts"
