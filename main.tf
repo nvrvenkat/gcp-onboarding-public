@@ -154,3 +154,19 @@ module "monitoring_alerts" {
   enable_monitoring       = var.Enable_Monitoring
   notification_channel_ids = module.notification_channel.notification_channel_ids
 }
+
+module "cloudrun_alerts" {
+
+  source = "./modules/cloudrun-alerts"
+
+  enable_cloudrun_cpu_alert    = var.Enable_CloudRun_CPU_Alert
+  enable_cloudrun_memory_alert = var.Enable_CloudRun_Memory_Alert
+
+  cpu_threshold    = var.CloudRun_CPU_Threshold
+  memory_threshold = var.CloudRun_Memory_Threshold
+
+  enable_monitoring       = var.Enable_Monitoring
+  notification_channel_ids = module.notification_channel.notification_channel_ids
+
+  depends_on = [module.notification_channel]
+}

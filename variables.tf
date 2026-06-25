@@ -160,6 +160,29 @@ variable "SET_BudgetActualThresholds" {
   description = "Alert when spending reaches these percentages (e.g., 50, 75, 100)."
 }
 
+variable "Enable_CloudRun_CPU_Alert" {
+  type        = bool
+  default     = false
+  description = "Enable Cloud Run CPU utilization alert."
+}
+
+variable "Enable_CloudRun_Memory_Alert" {
+  type        = bool
+  default     = false
+  description = "Enable Cloud Run Memory utilization alert."
+}
+
+variable "CloudRun_CPU_Threshold" {
+  type        = number
+  default     = 0.9
+  description = "Cloud Run CPU threshold percentage."
+}
+
+variable "CloudRun_Memory_Threshold" {
+  type        = number
+  default     = 0.9
+  description = "Cloud Run Memory threshold percentage."
+}
 # variable "EnableResourceTagging" {
 #   description = "If true, deploys the CloudFormation stack for auto-tagging CreatedBy and CreatedAt."
 #   type        = bool
